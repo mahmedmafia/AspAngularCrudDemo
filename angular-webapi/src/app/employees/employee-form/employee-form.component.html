@@ -1,0 +1,45 @@
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <input type="hidden" name="EmployeeID" #EmployeeID="ngModel" [(ngModel)]="service.formData.EmployeeID">
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="text" name="FullName" #FullName="ngModel" [(ngModel)]="service.formData.FullName" class="form-control"
+      required>
+    <div class="alert alert-danger" *ngIf="FullName.invalid && FullName.touched">Field required</div>
+  </div>
+  <div class="form-group">
+    <label>Position</label>
+    <input type="text" name="Position" #Position="ngModel" [(ngModel)]="service.formData.Position" class="form-control"
+      required>
+    <div class="alert alert-danger" *ngIf="Position.invalid && Position.touched">Field required</div>
+
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>EmpCode</label>
+      <input type="text" name="EmpCode" #EmpCode="ngModel" [(ngModel)]="service.formData.EMPCode" class="form-control"
+        required>
+      <div class="alert alert-danger" *ngIf="EmpCode.invalid && EmpCode.touched">Field required</div>
+
+    </div>
+    <div class="form-group col-md-6">
+      <label>Mobile</label>
+      <input type="text" name="Mobile" #Mobile="ngModel" [(ngModel)]="service.formData.Mobile" class="form-control"
+        required>
+      <div class="alert alert-danger" *ngIf="Mobile.invalid && Mobile.touched">Field required</div>
+
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" [disabled]="!form.valid" class="btn mce-btn-large btn-block btn-primary">
+      <ng-container *ngIf="service.formData.EmployeeID != null">
+        Update
+      </ng-container>
+      <ng-container *ngIf="service.formData.EmployeeID == null">
+        Submit
+      </ng-container>
+    </button>
+      <ng-container *ngIf="service.formData.EmployeeID != null">
+      <button type="submit" class="btn mce-btn-large btn-block btn-info" (click)="resetForm()">Clear</button>
+      </ng-container>
+  </div>
+</form>
